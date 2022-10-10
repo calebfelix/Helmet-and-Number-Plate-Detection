@@ -12,6 +12,7 @@ net = cv2.dnn.readNet("yolov3-custom_7000.weights", "yolov3-custom.cfg")
 net.setPreferableBackend(cv2.dnn.DNN_BACKEND_CUDA)
 net.setPreferableTarget(cv2.dnn.DNN_TARGET_CUDA)
 
+# loading the model
 
 model = load_model('helmet-nonhelmet_cnn.h5')
 print('model loaded!!!')
@@ -74,6 +75,8 @@ while ret:
                 classIds.append(class_id)
 
     indexes = cv2.dnn.NMSBoxes(boxes, confidences, 0.5, 0.4)
+
+# helmet detection
 
     for i in range(len(boxes)):
         if i in indexes:
